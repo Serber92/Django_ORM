@@ -17,3 +17,12 @@ class Wizard(models.Model):
     house = models.CharField(max_length=45)
     pet = models.CharField(max_length=45)
     year = models.IntegerField()
+
+
+class User(models.Model):
+  first_name = models.CharField(max_length=255)
+  last_name = models.CharField(max_length=255)
+  email_adress = models.CharField(max_length=255)
+  age = models.IntegerField()
+  created_at = models.DateField(auto_now=False, auto_now_add=True)
+  updated_at = models.DateField(auto_now=True, auto_now_add=False)
