@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% load static %}
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="{% static 'books_authors_app/css/materialize.min.css' %}" media="screen,projection" />
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* *{
+        outline: 1px solid red;
+      } */
+    .leftBox{
+      width: 600px;
+      display: inline-block;
+      margin-left: 40px;
+    }
+    .rightBox{
+      display: inline-block;
+      width: 400px;
+      height: 300px;
+    }
+    h2{
+      margin-left: 80px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Add a Book</h2>
+  <div class='leftBox'>
+    <div class="row">
+      <form class="col s12" action='add_book_process'>
+        {% csrf_token %}
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="input_text" type="text" data-length="10" name='title'>
+            <label for="input_text">TITLE</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s7">
+            <textarea id="textarea2" class="materialize-textarea" data-length="120" name='description'></textarea>
+            <label for="textarea2">DESCRIPTION</label>
+          </div>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Add Book
+          <i class="material-icons right">cloud</i>
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="rightBox">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      {% for book in books %}
+      <tbody>
+        <tr>
+          <td>{{book.id}}</td>
+          <td>{{book.title}}</td>
+          <td><a href='http://localhost:8000/books/{{book.id}}'>View</a></td>
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+  </div>
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="{% static 'books_authors_app/js/materialize.min.js' %}"></script>
+</body>
+
+</html>
