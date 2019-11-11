@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Shows</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <h1>All Shows</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tilte</th>
+        <th>Network</th>
+        <th>Relese Data</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for show in all_shows %}
+        <tr>
+          <td>{{show.id}}</td>
+          <td>{{show.title}}</td>
+          <td>{{show.network}}</td>
+          <td>{{show.release_date}}</td>
+          <td><a href="http://localhost:8000/shows/{{show.id}}">Show</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br>
+  <a class="waves-effect waves-light btn" href='http://localhost:8000/shows/new'>Add a new show</a>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</body>
+</html>
+

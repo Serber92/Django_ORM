@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>New</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <h1>Add a New Show</h1>
+  
+  <form action="/shows/new/process" method='POST'>
+  {% csrf_token %}
+    <div class="row">
+      <div class="input-field col s6">
+        <input id="first_name2" type="text" class="validate" name='title'>
+        <label class="active" for="first_name2">Title</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="input-field col s6">
+          <input id="first_name" type="text" class="validate" name='network'>
+          <label for="first_name">Network</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" class="datepicker" name='release_date'>
+          <label for="last_name">Release Date</label>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row">
+        <div class="input-field col s12">
+          <textarea id="textarea1" class="materialize-textarea" name='description'></textarea>
+          <label for="textarea1">Description</label>
+        </div>
+      </div>
+    </div>
+    <button class="btn waves-effect waves-light" type="submit" name="action">Create</button>
+  </form>
+  <br>
+  <a class="waves-effect waves-light btn" href='http://localhost:8000/shows'>Go Back</a>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      M.updateTextFields();
+      $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd'
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Shows Info</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+  <h1>TV Show {{show_index}}</h1>
+  <table>
+    <tr>
+      <th>Title:</th>
+      <td>{{show.title}}</td>
+    </tr>
+    <tr>
+      <th>Network:</th>
+      <td>{{show.network}}</td>
+    </tr>
+    <tr>
+      <th>Release Date:</th>
+      <td>{{show.release_date}}</td>
+    </tr>
+    <tr>
+      <th>Description:</th>
+      <td>{{show.description}}</td>
+    </tr>
+  </table>
+  <br>
+  <a class="waves-effect waves-light btn" href='http://localhost:8000/shows'>Go Back</a>
+  <a class="waves-effect waves-light btn" href='http://localhost:8000/shows/{{show_index}}/delete'>Delete</a>
+  <a class="waves-effect waves-light btn" href='http://localhost:8000/shows/{{show_index}}/edit'>Edit</a>
+</body>
+</html>
