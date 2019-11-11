@@ -28,7 +28,11 @@
           <td>{{show.title}}</td>
           <td>{{show.network}}</td>
           <td>{{show.release_date}}</td>
-          <td><a href="http://localhost:8000/shows/{{show.id}}">Show</a></td>
+          <td>
+            <a href="http://localhost:8000/shows/{{show.id}}">Show</a> |
+            <a href="http://localhost:8000/shows/{{show.id}}/edit">Edit</a> |
+            <a href="http://localhost:8000/shows/{{show.id}}/delete">Delete</a>
+          </td>
         </tr>
       {% endfor %}
     </tbody>

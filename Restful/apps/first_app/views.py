@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Shows
+from django.contrib import messages
 
 def shows(request):
   context = {
@@ -11,13 +12,19 @@ def new(request):
   return render(request, 'first_app/shows_new.html')
 
 def new_process(request):
-  title = request.POST['title']
-  network = request.POST['network']
-  release_date = request.POST['release_date']
-  description = request.POST['description']
-  Shows.objects.create(title=title, network=network, release_date=release_date, description=description)
-  show_id = Shows.objects.last().id
-  return redirect('/shows/' + str(show_id))
+  errors = Shows.objects.basic_validator(request.POST)
+  if len(errors) > 0:
+    for key, value in errors.items():
+      messages.error(request, value)
+      return redirect('/shows/new')
+  else:
+    title = request.POST['title']
+    network = request.POST['network']
+    release_date = request.POST['release_date']
+    description = request.POST['description']
+    Shows.objects.create(title=title, network=network, release_date=release_date, description=description)
+    show_id = Shows.objects.last().id
+    return redirect('/shows/' + str(show_id))
 
 def shows_info(request, show_index):
   context = {
