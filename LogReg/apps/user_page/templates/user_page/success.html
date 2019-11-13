@@ -9,9 +9,26 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    .rightBox, .leftBox{
+      display: inline-block;
+      vertical-align: top;
+      width: 45%;
+    }
+    .logout{
+      float: right;
+      margin-top: 20px;
+      font-size: 30px;
+    }
+  </style>
 </head>
 <body>
-  <h2>Success! Welcome, {{name}}</h2>
+  <div class='rightBox'>
+    <h2>Success! Welcome, {{name}}</h2>
+  </div>
+  <div class='leftBox'>
+    <a class='logout' href='/logout'>Log Out</a>
+  </div>
   
 </body>
 </html>

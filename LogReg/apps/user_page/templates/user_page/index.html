@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <style>
     .registration, .login{
@@ -17,13 +17,18 @@
     .messages{
       color: tomato;
     }
+    button{
+      margin: 15px;
+    }
+    h2{
+      text-align: center;
+    }
   </style>
 </head>
 <body>
  <!-- *************************************Registartion************************************** -->
 
   <div class='registration'>
-    <h2>Registration</h2>
 
     {% if messages %}
     <ul class="messages">
@@ -34,7 +39,8 @@
     {% endif %}
 
     <div class="row">
-      <form class="col s12" action='/registration_process' method="POST">
+      <form action='/registration_process' method="POST" class="col s14 m12 card">
+        <h2>Registration</h2>
           {% csrf_token %}
         <div class="row">
           <div class="input-field col s6">
@@ -44,6 +50,12 @@
           <div class="input-field col s6">
             <input id="last_name" type="text" class="validate" name='last_name'>
             <label for="last_name">Last Name</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12 m12">
+            <input id="dtp" type="text" class="datepicker" name='birthday'>
+            <label for="dtp">Birthday</label>
           </div>
         </div>
         <div class="row">
@@ -72,9 +84,9 @@
   </div>
 <!-- *************************************Login************************************** -->
   <div class='login'>
-    <h2>Login</h2>
     <div class="row">
-      <form class="col s12" action='/login_process' method="POST">
+      <form class="col s14 m12 card" action='/login_process' method="POST">
+        <h2>Login</h2>
           {% csrf_token %}
         <div class="row">
           <div class="input-field col s12">
@@ -95,12 +107,15 @@
   </div>
 
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
   <script>
     $(document).ready(function () {
-        M.updateTextFields();
+      $('.datepicker').datepicker({
+        format: 'yyyy-mm-dd'
       });
+      M.updateTextFields();
+    });
   </script>
 </body>
 </html>
