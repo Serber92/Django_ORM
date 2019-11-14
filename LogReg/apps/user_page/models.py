@@ -52,5 +52,16 @@ class User(models.Model):
     return f"{self.email} {self.password}"
 
 
+class Message(models.Model):
+  message = models.TextField()
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  user_id = models.ForeignKey(User, related_name="messages")
 
-    
+
+class Comment(models.Model):
+  comment = models.TextField()
+  created_at = models.DateTimeField(auto_now_add=True)
+  updated_at = models.DateTimeField(auto_now=True)
+  message_id = models.ForeignKey(Message, related_name="comments")
+  user_id = models.ForeignKey(User, related_name="comments")

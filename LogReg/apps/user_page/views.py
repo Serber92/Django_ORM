@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import User
+from .models import User, Message, Comment
 from django.contrib import messages
 import bcrypt
 
@@ -41,10 +41,28 @@ def login(request):
 def success(request):
   context = {
     'name': User.objects.get(id=request.session['user_id']).first_name,
+    'messages': Message.objects.all(),
+    'comments': Comment.objects.all(),
+    
   }
-  return render(request, 'user_page/success.html', context)
+  return render(request, 'user_page/user_wall.html', context)
 
 def logout(request):
   request.session.flush()
   return redirect('/')
+
+def post_message(request):
+  message = request.POST['message_to_post']
+  Message.objects.create(message=message, user_id=User.objects.get(id=request.session['user_id']))
+  return redirect('/success')
+
+def post_comment(request):
+  comment = request.POST['comment_to_post']
+  Comment.objects.create(comment=comment, user_id=User.objects.get(id=request.session['user_id']), message_id=Message.objects.get(id=request.POST['which_message']))
+  return redirect('/success')
+
+
+def delete_message(request, message_id):
+  Message.objects.get(id=message_id).delete()
+  return redirect('/success')
 
